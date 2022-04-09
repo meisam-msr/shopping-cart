@@ -11,3 +11,33 @@
 body {
   background-color: #f6f6f6;
 }
+.productList {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-gap: 5rem;
+  justify-content: center;
+  border-radius: 8px;
+  max-width: 1170px;
+  width: 90vw;
+}
+.product {
+  background-color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.productImg img {
+  width: 100%;
+  height: auto;
+}
+.productDesc {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
