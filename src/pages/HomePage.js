@@ -1,9 +1,12 @@
 import Layout from "../Layout/Layout";
 import * as data from "../data";
+import { useCartActions } from "../providers/CartProvider";
 
 const HomePage = () => {
+  const dispatch = useCartActions();
+
   const addProductHandler = (product) => {
-    console.log(product);
+    dispatch({ type: "ADD_TO_CART", payload: product });
   };
 
   return (
@@ -12,7 +15,7 @@ const HomePage = () => {
         <section className="productList">
           {data.products.map((product) => {
             return (
-              <section className="product">
+              <section className="product" key={product.id}>
                 <div className="productImg">
                   <img src={product.image} alt={product.name} />
                 </div>
