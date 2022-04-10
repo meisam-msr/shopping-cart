@@ -3,7 +3,7 @@ import { useCart, useCartActions } from "../providers/CartProvider";
 import "./cartPage.css";
 
 const CartPage = () => {
-  const { cart } = useCart();
+  const { cart, total } = useCart();
   const dispatch = useCartActions();
 
   if (!cart.length)
@@ -36,7 +36,9 @@ const CartPage = () => {
                   <div>{item.name}</div>
                   <div>{item.price * item.quantity}</div>
                   <div>
-                    <button onClick={() => decHandler(item)}>Remove</button>
+                    <button onClick={() => decHandler(item)}>
+                      {item.quantity === 1 ? "remove" : "decrement"}
+                    </button>
                     <button>{item.quantity}</button>
                     <button onClick={() => incHandler(item)}>Add</button>
                   </div>
@@ -44,7 +46,10 @@ const CartPage = () => {
               );
             })}
           </section>
-          <section className="cartSummary">cart summary</section>
+          <section className="cartSummary">
+            <h2>cart summary</h2>
+            <div>{total}$</div>
+          </section>
         </section>
       </main>
     </Layout>
