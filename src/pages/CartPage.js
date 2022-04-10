@@ -1,10 +1,10 @@
 import Layout from "../Layout/Layout";
-import { useCart } from "../providers/CartProvider";
+import { useCart, useCartActions } from "../providers/CartProvider";
 import "./cartPage.css";
 
 const CartPage = () => {
   const { cart } = useCart();
-  console.log(cart);
+  const dispatch = useCartActions();
 
   if (!cart.length)
     return (
@@ -14,6 +14,13 @@ const CartPage = () => {
         </main>
       </Layout>
     );
+
+  const incHandler = (cartItem) => {
+    dispatch({ type: "ADD_TO_CART", payload: cartItem });
+  };
+  const decHandler = (cartItem) => {
+    dispatch({ type: "DEC_PRODUCT", payload: cartItem });
+  };
 
   return (
     <Layout>
@@ -29,9 +36,9 @@ const CartPage = () => {
                   <div>{item.name}</div>
                   <div>{item.price * item.quantity}</div>
                   <div>
-                    <button>Remove</button>
+                    <button onClick={() => decHandler(item)}>Remove</button>
                     <button>{item.quantity}</button>
-                    <button>Add</button>
+                    <button onClick={() => incHandler(item)}>Add</button>
                   </div>
                 </div>
               );
