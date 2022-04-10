@@ -2,19 +2,31 @@ import Layout from "../Layout/Layout";
 import * as data from "../data";
 
 const HomePage = () => {
+  const addProductHandler = (product) => {
+    console.log(product);
+  };
+
   return (
     <Layout>
       <main className="container">
         <section className="productList">
-          {data.products.map((p) => {
+          {data.products.map((product) => {
             return (
-              <section className="product" key={p.name}>
+              <section className="product">
                 <div className="productImg">
-                  <img src={p.image} alt={p.name} />
+                  <img src={product.image} alt={product.name} />
                 </div>
                 <div className="productDesc">
-                  <p>{p.name}</p>
-                  <p>$ {p.price}</p>
+                  <p>{product.name}</p>
+                  <p>$ {product.price}</p>
+                </div>
+                <div className="btnContainer">
+                  <button
+                    onClick={() => addProductHandler(product)}
+                    className="btn primary"
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </section>
             );

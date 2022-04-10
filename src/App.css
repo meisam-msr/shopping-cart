@@ -7,6 +7,9 @@
   margin: 0;
   list-style: none;
   text-decoration: none;
+  font-family: "poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
 }
 body {
   background-color: #f6f6f6;
@@ -28,16 +31,40 @@ body {
   overflow: hidden;
   border-radius: 12px;
 }
+.productImg {
+  background-color: #fff;
+}
 .productImg img {
   width: 100%;
   height: auto;
+  padding: 16px 16px 0;
 }
 .productDesc {
-  padding: 10px;
+  padding: 6px 12px 0;
   display: flex;
   justify-content: space-between;
 }
 .container {
   display: flex;
   justify-content: center;
+}
+.btnContainer {
+  text-align: center;
+  padding: 12px 0;
+}
+.btn {
+  font-size: 14px;
+  width: 120px;
+  height: 48px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  background-color: #cbd5e1;
+  color: #6d28d9;
+  border-radius: 8px;
+}
+.primary {
+  background-color: #6d28d9;
+  color: #fff;
 }
