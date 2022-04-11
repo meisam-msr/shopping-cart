@@ -2,6 +2,7 @@ import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../providers/CartProvider";
 import "./cartPage.css";
 import { ReactComponent as ReactLogo } from "../assets/Delete.svg";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cart, total } = useCart();
@@ -82,6 +83,14 @@ const CartSummary = ({ total, cart }) => {
         <p>net price</p>
         <p>{total} $</p>
       </div>
+      <Link to="/checkout">
+        <button
+          className="btn primary"
+          style={{ marginTop: "1rem", width: "100%" }}
+        >
+          Go to Checkout
+        </button>
+      </Link>
     </section>
   );
 };
