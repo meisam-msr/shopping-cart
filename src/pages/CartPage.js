@@ -34,7 +34,7 @@ const CartPage = () => {
                     <img src={item.image} alt={item.name} />
                   </div>
                   <div>{item.name}</div>
-                  <div>{item.price * item.quantity}</div>
+                  <div>{item.offPrice * item.quantity}</div>
                   <div>
                     <button onClick={() => decHandler(item)}>
                       {item.quantity === 1 ? "remove" : "decrement"}
@@ -46,10 +46,7 @@ const CartPage = () => {
               );
             })}
           </section>
-          <section className="cartSummary">
-            <h2>cart summary</h2>
-            <div>{total}$</div>
-          </section>
+          <CartSummary cart={cart} total={total} />
         </section>
       </main>
     </Layout>
@@ -57,3 +54,29 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+const CartSummary = ({ total, cart }) => {
+  const originalTotalPrice = cart.length
+    ? cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
+    : 0;
+
+  return (
+    <section className="cartSummary">
+      <h3 style={{ marginBottom: "1rem", textAlign: "center" }}>
+        cart summary
+      </h3>
+      <div className="summaryItem">
+        <p>original total price</p>
+        <p>{originalTotalPrice} $</p>
+      </div>
+      <div className="summaryItem">
+        <p>cart discount</p>
+        <p>{originalTotalPrice - total} $</p>
+      </div>
+      <div className="summaryItem">
+        <p>net price</p>
+        <p>{total} $</p>
+      </div>
+    </section>
+  );
+};
