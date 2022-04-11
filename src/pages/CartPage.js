@@ -1,6 +1,7 @@
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../providers/CartProvider";
 import "./cartPage.css";
+import { ReactComponent as ReactLogo } from "../assets/Delete.svg";
 
 const CartPage = () => {
   const { cart, total } = useCart();
@@ -35,12 +36,16 @@ const CartPage = () => {
                   </div>
                   <div>{item.name}</div>
                   <div>{item.offPrice * item.quantity}</div>
-                  <div>
+                  <div className="btnGroup">
                     <button onClick={() => decHandler(item)}>
-                      {item.quantity === 1 ? "remove" : "decrement"}
+                      {item.quantity === 1 ? (
+                        <ReactLogo style={{ width: "14px", height: "14px" }} />
+                      ) : (
+                        "-"
+                      )}
                     </button>
                     <button>{item.quantity}</button>
-                    <button onClick={() => incHandler(item)}>Add</button>
+                    <button onClick={() => incHandler(item)}>+</button>
                   </div>
                 </div>
               );
