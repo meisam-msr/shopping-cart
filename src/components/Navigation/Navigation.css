@@ -29,3 +29,20 @@
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6.4px);
 }
+.cartLink{
+  position: relative;
+}
+.mainNavigation span{
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  color: #fff;
+  background-color: #6d28d9;
+  border-radius: 50%;
+  font-size: 14px;
+}
