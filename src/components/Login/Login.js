@@ -3,18 +3,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "../../services/loginService";
 
 const initialValues = {
   email: "",
   password: "",
-};
-
-const onSubmit = (values) => {
-  console.log(values);
-  //   axios
-  //     .post("http://localhost:3001/users", values)
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
 };
 
 const validationSchema = Yup.object({
@@ -25,6 +19,19 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (values) => {
+    try {
+      const { data } = await loginUser(values);
+      setError(null);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -51,6 +58,7 @@ const LoginForm = () => {
         >
           Login
         </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="linkContainer">
           <p>Don't have an account?</p>
           <Link to="/signup">Sign in</Link>

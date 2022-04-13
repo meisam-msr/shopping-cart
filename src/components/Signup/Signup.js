@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
 import { Link } from "react-router-dom";
+import { signupUser } from "../../services/signupService";
+import { useState } from "react";
 
 const initialValues = {
   name: "",
@@ -10,14 +12,6 @@ const initialValues = {
   phoneNumber: "",
   password: "",
   passwordConfirm: "",
-};
-
-const onSubmit = (values) => {
-  console.log(values);
-  //   axios
-  //     .post("http://localhost:3001/users", values)
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
 };
 
 const validationSchema = Yup.object({
@@ -31,18 +25,38 @@ const validationSchema = Yup.object({
     .required("Phone Number is required")
     .matches(/^[0-9]{11}$/, "Invalid Phone Number")
     .nullable(),
-  password: Yup.string()
-    .required("Password is required")
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-    ),
+  password: Yup.string().required("Password is required"),
+  // .matches(
+  //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+  //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+  // ),
   passwordConfirm: Yup.string()
     .required("Password Confirmation is required")
     .oneOf([Yup.ref("password"), null], "Password must match"),
 });
 
 const SignupForm = () => {
+  const [error, setError] = useState(null);
+  const onSubmit = async (values) => {
+    const { name, email, password, phoneNumber } = values;
+
+    const userData = {
+      name,
+      email,
+      phoneNumber,
+      password,
+    };
+
+    try {
+      const { data } = await signupUser(userData);
+      setError(null);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -82,6 +96,7 @@ const SignupForm = () => {
         >
           Signup
         </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="linkContainer">
           <p>Already have an account?</p>
           <Link to="/login">Log in</Link>
