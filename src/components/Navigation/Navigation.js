@@ -9,6 +9,11 @@ const Navigation = () => {
       <nav>
         <ul>
           <li>
+            shoe.Land
+          </li>
+        </ul>
+        <ul>
+          <li>
             <NavLink
               to="/"
               className={({ isActive }) => "" + (isActive ? " activeLink" : "")}
@@ -24,6 +29,16 @@ const Navigation = () => {
               }
             >
               Cart<span>{cart.length}</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                "" + (isActive ? " activeLink" : "")
+              }
+            >
+              Login/Signup
             </NavLink>
           </li>
         </ul>

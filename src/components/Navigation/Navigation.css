@@ -2,12 +2,18 @@
   width: 100%;
   height: 4.5rem;
   background-color: #cbd5e1;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
 }
 .mainNavigation nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 100%;
+  max-width: 1170px;
 }
 .mainNavigation ul {
   display: flex;
