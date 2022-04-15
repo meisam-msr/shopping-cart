@@ -5,6 +5,7 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../../services/loginService";
+import { useAuthActions } from "../../providers/AuthProvider";
 
 const initialValues = {
   email: "",
@@ -20,11 +21,15 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   let navigate = useNavigate();
+  const setAuth = useAuthActions();
   const [error, setError] = useState(null);
 
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
+      setAuth(data);
+      localStorage.setItem("authState", JSON.stringify(data));
+
       setError(null);
       navigate("/");
     } catch (error) {
