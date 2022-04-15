@@ -53,7 +53,6 @@ const SignupForm = () => {
     try {
       const { data } = await signupUser(userData);
       setAuth(data);
-      localStorage.setItem("authState", JSON.stringify(data));
 
       setError(null);
       navigate("/");
