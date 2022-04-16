@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../../services/loginService";
 import { useAuthActions } from "../../providers/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
   email: "",
@@ -20,6 +21,9 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const query = useQuery();
+  const redirect = query.get("redirect") || "";
+
   let navigate = useNavigate();
   const setAuth = useAuthActions();
   const [error, setError] = useState(null);
@@ -30,7 +34,7 @@ const LoginForm = () => {
       setAuth(data);
 
       setError(null);
-      navigate("/");
+      navigate(`/${redirect}`);
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -67,7 +71,7 @@ const LoginForm = () => {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="linkContainer">
           <p>Don't have an account?</p>
-          <Link to="/signup">Sign in</Link>
+          <Link to={`/signup?redirect=${redirect}`}>Sign in</Link>
         </div>
       </form>
     </div>
