@@ -4,8 +4,8 @@ import * as Yup from "yup";
 import "./signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../../services/signupService";
-import { useState } from "react";
-import { useAuthActions } from "../../providers/AuthProvider";
+import { useState, useEffect } from "react";
+import { useAuth, useAuthActions } from "../../providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
@@ -43,7 +43,13 @@ const SignupForm = () => {
 
   let navigate = useNavigate();
   const setAuth = useAuthActions();
+  const auth = useAuth();
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (auth) navigate(`/${redirect}`);
+  }, [redirect, auth]);
+
   const onSubmit = async (values) => {
     const { name, email, password, phoneNumber } = values;
 

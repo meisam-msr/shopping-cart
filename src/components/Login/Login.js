@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginUser } from "../../services/loginService";
-import { useAuthActions } from "../../providers/AuthProvider";
+import { useAuth, useAuthActions } from "../../providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
@@ -26,7 +26,12 @@ const LoginForm = () => {
 
   let navigate = useNavigate();
   const setAuth = useAuthActions();
+  const auth = useAuth();
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (auth) navigate(`/${redirect}`);
+  }, [redirect, auth]);
 
   const onSubmit = async (values) => {
     try {
