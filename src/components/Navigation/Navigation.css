@@ -6,6 +6,7 @@
   justify-content: center;
   position: sticky;
   top: 0;
+  z-index: 99;
 }
 .mainNavigation nav {
   display: flex;
