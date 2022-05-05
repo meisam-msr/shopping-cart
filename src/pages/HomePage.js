@@ -3,10 +3,12 @@ import * as data from "../data";
 import { useCart, useCartActions } from "../providers/CartProvider";
 import { checkInCart } from "../utils/checkInCart";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const { cart } = useCart();
   const dispatch = useCartActions();
+  let navigate = useNavigate();
 
   const addProductHandler = (product) => {
     toast.success(`${product.name} added to cart !`);
@@ -29,10 +31,16 @@ const HomePage = () => {
                 </div>
                 <div className="btnContainer">
                   <button
-                    onClick={() => addProductHandler(product)}
+                    onClick={() =>
+                      checkInCart(cart, product)
+                        ? navigate("/cart")
+                        : addProductHandler(product)
+                    }
                     className="btn primary"
                   >
-                    {checkInCart(cart, product) ? "In Cart" : "Add to Cart"}
+                    {checkInCart(cart, product)
+                      ? "Continue Shopping"
+                      : "Add to Cart"}
                   </button>
                 </div>
               </section>
