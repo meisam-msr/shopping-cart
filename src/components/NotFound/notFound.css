@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-button {
+.backHome {
   width: 100%;
   margin-top: 1rem;
   font-size: 1rem;
@@ -21,7 +21,7 @@ button {
     flex-direction: row-reverse;
     padding: 0 3rem;
   }
-  button {
+  .backHome {
     width: auto;
   }
 }
