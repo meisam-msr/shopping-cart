@@ -1,3 +1,12 @@
+:root {
+  --color-orange: #c85d46;
+  --color-black: #0d0d0d;
+  --color-gray: #f6f6f6;
+  --color-blue: #11a5cd;
+}
+.wrapper {
+  margin: 0 auto;
+}
 .App {
   text-align: center;
 }
@@ -65,7 +74,7 @@ body {
   background-color: #6d28d9;
   color: #fff;
 }
-button:disabled{
+button:disabled {
   cursor: not-allowed;
   background-color: #cbd5e1;
   color: #ccc;

@@ -1,7 +1,7 @@
 import Input from "../../common/Input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "./login.css";
+import styles from "./login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loginUser } from "../../services/loginService";
@@ -56,7 +56,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div className="formContainer">
+    <div className={styles.formContainer}>
       <form onSubmit={formik.handleSubmit}>
         <Input formik={formik} name="email" label="email" type="email" />
         <Input
@@ -68,13 +68,13 @@ const LoginForm = () => {
         <button
           type="submit"
           disabled={!formik.isValid}
-          className="btn primary"
+          className={`${styles.btn} ${styles.primary}`}
           style={{ width: "100%" }}
         >
           Login
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <div className="linkContainer">
+        <div className={styles.linkContainer}>
           <p>Don't have an account?</p>
           <Link to={`/signup?redirect=${redirect}`}>Sign in</Link>
         </div>

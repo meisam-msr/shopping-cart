@@ -1,17 +1,17 @@
 import { ReactComponent as ReactLogo } from "../../assets/user.svg";
-import "./profile.css";
+import styles from "./profile.module.css";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("authState"));
   return (
-    <section className="container">
-      <div className="card">
+    <section className={styles.container}>
+      <div className={styles.card}>
         <h3>Profile</h3>
-        <div className="userInfo">
+        <div className={styles.userInfo}>
           <div>
-            <ReactLogo className="userImg" />
+            <ReactLogo className={styles.userImg} />
           </div>
-          <div className="details">
+          <div className={styles.details}>
             <div>
               <span>name</span> {user.name}
             </div>
