@@ -1,6 +1,6 @@
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../providers/CartProvider";
-import "./cartPage.css";
+import styles from "./cartPage.module.css";
 import { ReactComponent as ReactLogo } from "../assets/Delete.svg";
 import { Link } from "react-router-dom";
 
@@ -27,17 +27,17 @@ const CartPage = () => {
   return (
     <Layout>
       <main className="container">
-        <section className="cartCenter">
-          <section className="cartItemList">
+        <section className={styles.cartCenter}>
+          <section className={styles.cartItemList}>
             {cart.map((item) => {
               return (
-                <div className="cartItem" key={item.id}>
-                  <div className="itemImg">
+                <div className={styles.cartItem} key={item.id}>
+                  <div className={styles.itemImg}>
                     <img src={item.image} alt={item.name} />
                   </div>
                   <div>{item.name}</div>
                   <div>{item.offPrice * item.quantity}</div>
-                  <div className="btnGroup">
+                  <div className={styles.btnGroup}>
                     <button onClick={() => decHandler(item)}>
                       {item.quantity === 1 ? (
                         <ReactLogo style={{ width: "14px", height: "14px" }} />
@@ -67,19 +67,19 @@ const CartSummary = ({ total, cart }) => {
     : 0;
 
   return (
-    <section className="cartSummary">
+    <section className={styles.cartSummary}>
       <h3 style={{ marginBottom: "1rem", textAlign: "center" }}>
         cart summary
       </h3>
-      <div className="summaryItem">
+      <div className={styles.summaryItem}>
         <p>original total price</p>
         <p>{originalTotalPrice} $</p>
       </div>
-      <div className="summaryItem">
+      <div className={styles.summaryItem}>
         <p>cart discount</p>
         <p>{originalTotalPrice - total} $</p>
       </div>
-      <div className="summaryItem">
+      <div className={styles.summaryItem}>
         <p>net price</p>
         <p>{total} $</p>
       </div>

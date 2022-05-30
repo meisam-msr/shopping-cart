@@ -68,7 +68,7 @@ const LoginForm = () => {
         <button
           type="submit"
           disabled={!formik.isValid}
-          className={`${styles.btn} ${styles.primary}`}
+          className="btn primary"
           style={{ width: "100%" }}
         >
           Login

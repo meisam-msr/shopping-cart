@@ -1,7 +1,7 @@
-import "./input.css"
+import styles from "./input.module.css";
 const Input = ({ label, name, formik, type = "text" }) => {
   return (
-    <div className="formControl">
+    <div className={styles.formControl}>
       <label htmlFor={name}>{label}</label>
       <input
         id={name}
@@ -10,7 +10,7 @@ const Input = ({ label, name, formik, type = "text" }) => {
         name={name}
       />
       {formik.errors[name] && formik.touched[name] && (
-        <div className="error">{formik.errors[name]}</div>
+        <div className={styles.error}>{formik.errors[name]}</div>
       )}
     </div>
   );
