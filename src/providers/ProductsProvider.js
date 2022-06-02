@@ -7,11 +7,12 @@ import {
 } from "react";
 import { getProducts } from "../services/getProductsService";
 import * as data from "../data";
+import _ from "lodash";
 const ProductsContext = createContext();
 const ProductsContextDispatcher = createContext();
 
 // let initialState = { items: [] };
-const initialState = data.products; 
+const initialState = data.products;
 
 async function fetchProducts() {
   try {
@@ -24,7 +25,6 @@ async function fetchProducts() {
 }
 
 const productsReducer = (state, action) => {
-  const clone = [...state];
   switch (action.type) {
     case "search": {
       const value = action.value;
@@ -35,6 +35,17 @@ const productsReducer = (state, action) => {
           p.name.toLowerCase().includes(value.toLowerCase())
         );
         return filteredProducts;
+      }
+    }
+    case "sort": {
+      const value = action.value;
+      const products = [...state];
+      if (value === "lowest") {
+        return _.orderBy(products, ["price"], ["asc"]);
+      } else if (value === "highest") {
+        return _.orderBy(products, ["price"], ["desc"]);
+      } else if (value === "discount") {
+        return _.orderBy(products, ["discount", ["asc"]]);
       }
     }
     default:

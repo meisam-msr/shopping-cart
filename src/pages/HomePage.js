@@ -3,10 +3,14 @@ import * as data from "../data";
 import { useCart, useCartActions } from "../providers/CartProvider";
 import { checkInCart } from "../utils/checkInCart";
 import { toast } from "react-toastify";
+import Filter from "../components/Filter/Filter";
+import Sort from "../components/Sort/Sort";
+import { useProducts } from "../providers/ProductsProvider";
 
 const HomePage = () => {
   const { cart } = useCart();
   const dispatch = useCartActions();
+  const products = useProducts();
 
   const addProductHandler = (product) => {
     toast.success(`${product.name} added to cart !`);
@@ -19,9 +23,13 @@ const HomePage = () => {
 
   return (
     <Layout>
+      <section className="filterContainer">
+        <Sort />
+        <Filter />
+      </section>
       <main className="container">
         <section className="productList">
-          {data.products.map((product) => {
+          {products.map((product) => {
             return (
               <section className="product" key={product.id}>
                 <img

@@ -1,0 +1,120 @@
+.modal {
+  height: 60%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999 !important;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-white);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.14);
+  transform: translateY(100%);
+  transition: var(--transition);
+}
+.showModalBtn {
+  width: 100%;
+  display: flex;
+  background-color: var(--color-gray);
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+.toggle {
+  transform: translateY(0px);
+}
+.modalHeader {
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+.close,
+.sortIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-orange);
+}
+.modalList ul li {
+  width: 100%;
+  border-bottom: 1px solid var(--color-gray);
+}
+.modalList .option input,
+.desktopSort .desktopOption input {
+  display: none;
+}
+.option label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 1rem 0;
+  font-weight: normal;
+}
+.option label svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-white);
+}
+.option input:checked + label svg {
+  color: var(--color-orange);
+}
+.desktopSort {
+  display: none;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+.desktopSort div {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+.desktopSort li {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+.desktopOption label {
+  position: relative;
+  font-weight: normal;
+  color: #bbb;
+  transition: var(--transition);
+}
+.desktopOption input:checked + label {
+  font-weight: 700;
+  color: var(--color-black);
+}
+.desktopOption input:checked + label::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: #fd9b6b;
+  border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .showModalBtn {
+    display: none;
+  }
+  .modal {
+    display: none;
+  }
+  .desktopSort {
+    display: flex;
+  }
+  .desktopSort ul {
+    display: flex;
+    align-items: center;
+  }
+}
