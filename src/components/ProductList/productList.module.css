@@ -1,0 +1,114 @@
+.productList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 280px));
+  grid-gap: 4rem;
+  justify-content: center;
+  border-radius: 8px;
+  max-width: 1170px;
+  width: 90vw;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-gray);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0px 25px 66px rgba(0, 0, 0, 0.09);
+}
+.product::before {
+  content: "";
+  width: 2px;
+  height: 40px;
+  background-color: #fd9b6b;
+  position: absolute;
+  top: 2rem;
+  left: -2px;
+}
+.productImg {
+  width: 100%;
+  object-fit: cover;
+  padding: 2rem 2rem 0;
+}
+.productName {
+  position: absolute;
+  top: 1.5rem;
+  left: 1rem;
+}
+.productDesc {
+  padding: 0 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.productPrice span {
+  color: #bbb;
+  font-weight: 300;
+}
+.productPrice p {
+  font-weight: 600;
+}
+.productImgs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.productImgs img {
+  width: 48px;
+  height: 48px;
+  padding: 0.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray);
+}
+.cardBtn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  border-radius: 50%;
+  color: var(--color-orange);
+  background-color: var(--color-gray);
+  transition: var(--transition);
+}
+.cardBtn svg {
+  padding: 0.5rem;
+}
+.inCart {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+}
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+}
+.btnContainer {
+  text-align: center;
+  padding: 12px 0;
+}
+.btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  background-color: var(--color-gray);
+  color: var(--color-orange);
+  border-radius: 12px;
+}
+.primary {
+  background-color: var(--color-orange);
+  color: #fff;
+}
+button:disabled {
+  cursor: not-allowed;
+  background-color: var(--color-gray);
+  color: #ccc;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    position: relative;
+    top: 2rem;
+  }
+}
