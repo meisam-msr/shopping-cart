@@ -5,8 +5,6 @@ import styles from "./sort.module.css";
 const Sort = () => {
   const [sortToggle, setSortToggle] = useState(false);
   const [sortValue, setSortValue] = useState("");
-  const triggerRef = useRef(null); 
-  const nodeRef = useRef(null); 
   const productDispatch = useProductsActions();
 
   const sortOptions = [
@@ -21,37 +19,19 @@ const Sort = () => {
     setSortToggle(false);
   };
 
-  const handleClickOutside = (e) => {
-    if (triggerRef.current && triggerRef.current.contains(e.target)) {
-      return setSortToggle(true);
-    }
-
-    if (nodeRef.current && !nodeRef.current.contains(e.target)) {
-      document.removeEventListener("mousedown", e.stopPropagation());
-      // document.removeEventListener("click", e.preventDefault());
-      document.removeEventListener("touchstart", e.stopPropagation());
-      return setSortToggle(false);
-    }
-  };
-
-  if (!sortToggle) {
-    document.body.removeEventListener("click", handleClickOutside, true);
-  }
-
-  useEffect(() => {
-    document.body.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.body.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
+  sortToggle
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "scroll");
 
   return (
     <>
       <div
-        className={styles.showModalBtn}
-        ref={triggerRef}
-        onClick={() => setSortToggle(true)}
-      >
+        className={`${styles.backGround} ${
+          sortToggle ? styles.showBackground : ""
+        }`}
+        onClick={() => setSortToggle(false)}
+      ></div>
+      <div className={styles.showModalBtn} onClick={() => setSortToggle(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="filterIcon"
@@ -68,10 +48,7 @@ const Sort = () => {
         </svg>
         <p>Sort</p>
       </div>
-      <section
-        ref={nodeRef}
-        className={`${styles.modal} ${sortToggle && styles.toggle}`}
-      >
+      <section className={`${styles.modal} ${sortToggle && styles.toggle}`}>
         <div className={styles.modalHeader}>
           <p>Sort By</p>
           <svg
