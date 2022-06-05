@@ -4,7 +4,7 @@
   --color-white: #ffffff;
   --color-gray: #f3f3f4;
   --color-blue: #11a5cd;
-  --transition: all 0.3s ease-out;
+  --transition: all 0.3s ease-in-out;
 }
 .wrapper {
   margin: 0 auto;
