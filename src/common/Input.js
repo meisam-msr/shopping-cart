@@ -4,6 +4,7 @@ const Input = ({ label, name, formik, type = "text" }) => {
     <div className={styles.formControl}>
       <label htmlFor={name}>{label}</label>
       <input
+        className={styles.input}
         id={name}
         type={type}
         {...formik.getFieldProps(name)}
