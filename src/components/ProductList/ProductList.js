@@ -19,7 +19,7 @@ const ProductList = () => {
   };
 
   return (
-    <main className={styles.container}>
+    <main>
       <section className={styles.productList}>
         {products.map((product) => {
           return (

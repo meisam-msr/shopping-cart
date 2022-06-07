@@ -11,11 +11,11 @@ import ProductList from "../components/ProductList/ProductList";
 const HomePage = () => {
   return (
     <Layout>
-      <section className="filterContainer">
-        <Sort />
-        <Filter />
-      </section>
+      <section className="mainContainer">
+      <Filter className="filter" />
+      <Sort className="sort" />
       <ProductList />
+      </section>
     </Layout>
   );
 };

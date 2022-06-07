@@ -23,7 +23,6 @@
     "Helvetica Neue", sans-serif;
 }
 .filterContainer {
-  position: fixed;
   z-index: 99;
   width: 100%;
   display: flex;
@@ -32,92 +31,6 @@
   gap: 1rem;
   background-color: var(--color-white);
   padding: 0 1.5rem;
-}
-.filterContainer .filterIcon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-orange);
-}
-.productList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 280px));
-  grid-gap: 4rem;
-  justify-content: center;
-  border-radius: 8px;
-  max-width: 1170px;
-  width: 90vw;
-}
-.product {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-gray);
-  border-radius: 12px;
-  position: relative;
-  box-shadow: 0px 25px 66px rgba(0, 0, 0, 0.09);
-}
-.product::before {
-  content: "";
-  width: 2px;
-  height: 40px;
-  background-color: #fd9b6b;
-  position: absolute;
-  top: 2rem;
-  left: -2px;
-}
-.productImg {
-  width: 100%;
-  object-fit: cover;
-  padding: 2rem 2rem 0;
-}
-.productName {
-  position: absolute;
-  top: 1.5rem;
-  left: 1rem;
-}
-.productDesc {
-  padding: 0 1rem 1rem;
-  display: flex;
-  justify-content: space-between;
-}
-.productPrice span {
-  color: #bbb;
-  font-weight: 300;
-}
-.productPrice p {
-  font-weight: 600;
-}
-.productImgs {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-}
-.productImgs img {
-  width: 48px;
-  height: 48px;
-  padding: 0.2rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-gray);
-}
-.cardBtn {
-  cursor: pointer;
-  outline: none;
-  border: none;
-  width: 52px;
-  height: 52px;
-  position: absolute;
-  top: 1.5rem;
-  right: 1rem;
-  border-radius: 50%;
-  color: var(--color-orange);
-  background-color: var(--color-gray);
-  transition: var(--transition);
-}
-.cardBtn svg {
-  padding: 0.5rem;
-}
-.inCart {
-  background-color: var(--color-orange);
-  color: var(--color-white);
 }
 .container {
   display: flex;
@@ -146,9 +59,83 @@ button:disabled {
   background-color: var(--color-gray);
   color: #ccc;
 }
-@media screen and (min-width:768px) {
+.desktopFilter {
+  display: none;
+  border-right: 1px solid var(--color-gray);
+  padding: 1rem;
+  width: 100%;
+}
+.desktopSort {
+  display: none;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+.desktopSort div {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+.desktopSort li {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+.desktopSort .desktopOption input {
+  display: none;
+}
+.mainContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(auto-fill, minmax(2rem, 1fr));
+  grid-template-areas: "sort filter" "main main";
+  padding: 0 2rem;
+  column-gap: 1rem;
+  row-gap: 2rem;
+  place-items: center;
+  place-content: center;
+}
+main {
+  grid-area: main;
+}
+.filter {
+  position: sticky;
+  top: 0;
+  grid-area: filter;
+}
+.sort {
+  position: sticky;
+  top: 0;
+  grid-area: sort;
+  display: flex;
+}
+@media screen and (min-width: 768px) {
   .container {
     position: relative;
     top: 2rem;
+  }
+  .mainContainer {
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 55px minmax(500px, 1fr);
+    grid-template-areas:
+      "filter sort"
+      "filter main"
+      "filter main";
+    place-items: start;
+    padding: 0 1rem;
+    column-gap: 0;
+    row-gap: 0;
+  }
+  .desktopSort ul {
+    display: flex;
+    align-items: center;
+  }
+  main {
+    border-left: 1px solid var(--color-gray);
+    padding: 2rem;
   }
 }

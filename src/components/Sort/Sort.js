@@ -34,7 +34,7 @@ const Sort = () => {
       <div className={styles.showModalBtn} onClick={() => setSortToggle(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="filterIcon"
+          className={styles.filterIcon}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -102,7 +102,7 @@ const Sort = () => {
           </ul>
         </div>
       </section>
-      <section className={styles.desktopSort}>
+      <section className={`desktopSort ${styles.desktopSort}`}>
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"

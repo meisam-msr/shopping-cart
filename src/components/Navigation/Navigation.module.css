@@ -4,7 +4,6 @@
   position: sticky;
   top: 0;
   z-index: 99;
-  
 }
 .mainNavigation nav {
   display: grid;
@@ -66,5 +65,10 @@ nav .logo {
     grid-template-columns: 20% 60% 20%;
     grid-template-rows: 100%;
     grid-template-areas: "logo search list";
+  }
+}
+@media screen and (min-width: 1280px) {
+  .mainNavigation nav {
+    margin: 0 auto;
   }
 }
