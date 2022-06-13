@@ -3,6 +3,7 @@ import { useCart, useCartActions } from "../providers/CartProvider";
 import styles from "./cartPage.module.css";
 import { ReactComponent as ReactLogo } from "../assets/Delete.svg";
 import { Link } from "react-router-dom";
+import emptyCart from "../assets/empty-cart.svg";
 
 const CartPage = () => {
   const { cart, total } = useCart();
@@ -12,7 +13,32 @@ const CartPage = () => {
     return (
       <Layout>
         <main>
-          <h2>cart is empty !</h2>
+          <section className={styles.emptyCart}>
+            <div>
+              <img src={emptyCart} />
+            </div>
+            <h2>Your cart is empty !</h2>
+            <Link to="/">
+              <button className="btn primary">
+                <div className={styles.emptyBtn}>
+                  <p>Go to Shop</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </Link>
+          </section>
         </main>
       </Layout>
     );
@@ -26,7 +52,7 @@ const CartPage = () => {
 
   return (
     <Layout>
-      <main className="container">
+      <main>
         <section className={styles.cartCenter}>
           <section className={styles.cartItemList}>
             {cart.map((item) => {
@@ -35,18 +61,24 @@ const CartPage = () => {
                   <div className={styles.itemImg}>
                     <img src={item.image} alt={item.name} />
                   </div>
-                  <div>{item.name}</div>
-                  <div>{item.offPrice * item.quantity}</div>
-                  <div className={styles.btnGroup}>
-                    <button onClick={() => decHandler(item)}>
-                      {item.quantity === 1 ? (
-                        <ReactLogo style={{ width: "14px", height: "14px" }} />
-                      ) : (
-                        "-"
-                      )}
-                    </button>
-                    <button>{item.quantity}</button>
-                    <button onClick={() => incHandler(item)}>+</button>
+                  <div className={styles.itemDesc}>
+                    <div>{item.name}</div>
+                    <div className={styles.itemPrice}>
+                      {item.offPrice * item.quantity} $
+                    </div>
+                    <div className={styles.btnGroup}>
+                      <button onClick={() => decHandler(item)}>
+                        {item.quantity === 1 ? (
+                          <ReactLogo
+                            style={{ width: "16px", height: "16px" }}
+                          />
+                        ) : (
+                          "-"
+                        )}
+                      </button>
+                      <button>{item.quantity}</button>
+                      <button onClick={() => incHandler(item)}>+</button>
+                    </div>
                   </div>
                 </div>
               );
