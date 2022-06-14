@@ -1,5 +1,5 @@
 import styles from "./notFound.module.css";
-import errorImg from "../../assets/error.png";
+import errorImg from "../../assets/notFound.svg";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {
@@ -15,10 +15,23 @@ const NotFound = () => {
           We suggest you back to home.
         </p>
         <Link to="/">
-          <button
-            className={`${styles.btn} ${styles.primary} ${styles.backHome}`}
-          >
-            Back to home
+          <button className="btn primary">
+            <div className={styles.backHome}>
+              <p>Back to home</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </div>
           </button>
         </Link>
       </div>

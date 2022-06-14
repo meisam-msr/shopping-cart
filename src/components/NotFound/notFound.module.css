@@ -4,18 +4,36 @@
   justify-content: space-evenly;
   align-items: center;
   padding: 0 1rem;
+  margin: 4rem 2rem;
+  gap: 1.5rem;
+}
+.errorImg {
+  width: 100%;
+  height: auto;
 }
 .errorText {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.backHome {
-  width: 100%;
+.container a {
   margin-top: 1rem;
-  font-size: 1rem;
 }
-
+.container button {
+  width: 100%;
+  font-size: 1.2rem;
+}
+.backHome {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+.backHome svg {
+  width: 24px;
+  height: 24px;
+  animation: move 3s ease-in-out infinite;
+}
 @media only screen and (min-width: 768px) {
   .container {
     flex-direction: row-reverse;
@@ -23,5 +41,22 @@
   }
   .backHome {
     width: auto;
+  }
+  .errorImg {
+    width: 50%;
+  }
+  .container button {
+    width: auto;
+  }
+}
+@keyframes move {
+  0% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(2px);
   }
 }
