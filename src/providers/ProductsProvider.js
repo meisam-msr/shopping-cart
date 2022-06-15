@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 import { getProducts } from "../services/getProductsService";
 import * as data from "../data";
 import _ from "lodash";
@@ -29,11 +23,14 @@ const productsReducer = (state, action) => {
     case "search": {
       const value = action.value;
       if (value === "") {
-        return state;
+        return initialState;
       } else {
-        const filteredProducts = state.filter((p) =>
-          p.name.toLowerCase().includes(value.toLowerCase())
-        );
+        const filteredProducts = initialState.filter((p) => {
+          return Object.values(p)
+            .join("")
+            .toLowerCase()
+            .includes(value.toLowerCase());
+        });
         return filteredProducts;
       }
     }

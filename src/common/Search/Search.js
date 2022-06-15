@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { ReactComponent as SearchSvg } from "../../assets/search.svg";
-import { useProductsActions } from "../../providers/ProductsProvider";
 import { useNavigate } from "react-router-dom";
 import styles from "./search.module.css";
 
 const Search = () => {
-  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const changeHandler = (e) => {
-    setQuery(e.target.value);
+    setSearch(e.target.value);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     navigate({
       pathname: "/",
-      search: `?search=${query}`,
+      search: `?search=${search}`,
     });
+    setSearch("");
   };
 
   return (
@@ -27,7 +27,7 @@ const Search = () => {
       </button>
       <input
         type="text"
-        value={query}
+        value={search}
         onChange={changeHandler}
         placeholder="Search for a model"
         className={styles.searchInput}
