@@ -118,8 +118,7 @@
 .emptyBtn svg {
   width: 24px;
   height: 24px;
-  transform: translateX(5px);
-  animation: transform 0.3s ease-in-out;
+  animation: move 3s infinite;
 }
 @media screen and (min-width: 480px) {
   .cartItem {
@@ -153,5 +152,16 @@
   }
   .cartSummary p {
     font-size: medium;
+  }
+}
+@keyframes move {
+  0% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(2px);
   }
 }

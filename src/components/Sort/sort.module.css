@@ -93,7 +93,6 @@
   transition: var(--transition);
 }
 .desktopOption input:checked + label {
-  font-weight: 700;
   color: var(--color-black);
 }
 .desktopOption input:checked + label::after {

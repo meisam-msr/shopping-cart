@@ -53,6 +53,7 @@
   align-items: center;
   font-size: 20px;
   border-top: 1px solid var(--color-gray);
+  background-color: var(--color-white);
 }
 .resault .filterBtn {
   display: block;
