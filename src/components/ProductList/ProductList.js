@@ -18,9 +18,17 @@ const ProductList = () => {
   const productDispatch = useProductsActions();
   const query = useQuery();
   const search = query.get("search") || "";
+  const price = query.get("price") || "";
+  const size = query.get("size") || "";
+  console.log(price, size);
+
   useEffect(() => {
     productDispatch({ type: "search", value: search });
   }, [search]);
+
+  useEffect(() => {
+    productDispatch({ type: "filter", payload: { price, size } });
+  }, [price, size]);
 
   const addProductHandler = (product) => {
     toast.success(`${product.name} added to cart !`);

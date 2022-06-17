@@ -11,6 +11,7 @@ export const products = [
     offPrice: 120,
     discount: 0,
     image: "https://s4.uupload.ir/files/item1_soj.jpg",
+    size: [37, 39, 42, 43],
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const products = [
     offPrice: 100,
     discount: 8,
     image: "https://s4.uupload.ir/files/item2_fc5s.jpg",
+    size: [39, 40, 41, 42, 43],
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const products = [
     offPrice: 89,
     discount: 10,
     image: "https://s4.uupload.ir/files/item3_zvc9.jpg",
+    size: [37, 38, 41, 42, 44],
   },
   {
     id: 4,
@@ -46,10 +49,11 @@ export const products = [
     offPrice: 220,
     discount: 15,
     image: "https://s4.uupload.ir/files/item4_zr94.jpg",
+    size: [38, 39, 40, 43, 44],
   },
   {
     id: 5,
-    name: "Croopped-shoe",
+    name: "Croopped",
     description: [
       { support: "گارانتی مادام العمر" },
       { support: "اورجینال" },
@@ -59,6 +63,7 @@ export const products = [
     offPrice: 150,
     discount: 0,
     image: "https://s4.uupload.ir/files/item5_24ye.jpg",
+    size: [39, 40, 41, 42],
   },
   {
     id: 6,
@@ -72,9 +77,26 @@ export const products = [
     offPrice: 200,
     discount: 13,
     image: "https://s4.uupload.ir/files/item6_7jfy.jpg",
+    size: [37, 39, 40, 42, 44],
   },
 ];
-
+export const sizeOptions = [
+  { value: 35, label: "35" },
+  { value: 36, label: "36" },
+  { value: 37, label: "37" },
+  { value: 38, label: "38" },
+  { value: 39, label: "39" },
+  { value: 40, label: "40" },
+  { value: 41, label: "41" },
+  { value: 42, label: "42" },
+  { value: 43, label: "43" },
+  { value: 44, label: "44" },
+  { value: 45, label: "45" },
+  { value: 46, label: "46" },
+  { value: 47, label: "47" },
+  { value: 48, label: "48" },
+  { value: 49, label: "49" },
+];
 // export const users = [
 //   {
 //     name: "Saheb mohamadi",

@@ -1,35 +1,37 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Accordion from "../../common/Accordion/Accordion";
 import Checkbox from "../../common/CheckBox/CheckBox";
 import InputRange from "../../common/InputRange/InputRange";
+import { sizeOptions } from "../../data";
+import { useProductsActions } from "../../providers/ProductsProvider";
 import styles from "./filter.module.css";
 
 const Filter = () => {
   const [filterToggle, setFilterToggle] = useState(false);
-
-  const sizeOptions = [
-    { value: 35, label: "35" },
-    { value: 36, label: "36" },
-    { value: 37, label: "37" },
-    { value: 38, label: "38" },
-    { value: 39, label: "39" },
-    { value: 40, label: "40" },
-    { value: 41, label: "41" },
-    { value: 42, label: "42" },
-    { value: 43, label: "43" },
-    { value: 44, label: "44" },
-    { value: 45, label: "45" },
-    { value: 46, label: "46" },
-    { value: 47, label: "47" },
-    { value: 48, label: "48" },
-    { value: 49, label: "49" },
-  ];
+  const [values, setValues] = useState({ price: "250", size: "" });
+  const navigate = useNavigate();
 
   filterToggle
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "scroll");
 
-  const onChange = () => {};
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+    navigate({
+      pathname: "/",
+      search: `?price=${values.price}&size=${values.size}`,
+    });
+  };
+
+  const clearFilterHandler = () => {
+    setValues({ price: "250", size: "" });
+    navigate({
+      pathname: "/",
+      search: `?price=${values.price}&size=${values.size}`,
+    });
+    setFilterToggle(false);
+  };
 
   return (
     <>
@@ -75,33 +77,55 @@ const Filter = () => {
           </svg>
         </div>
         <Accordion title="Price Range">
-          <InputRange name="price" value={700} step={100} min={0} max={1000} />
+          <InputRange
+            name="price"
+            value={values.price}
+            step={25}
+            min={0}
+            max={250}
+            onChange={onChange}
+          />
         </Accordion>
         <Accordion title="Size">
           <Checkbox
             options={sizeOptions}
             name="size"
             onChange={onChange}
-            value=""
+            value={parseInt(values.size)}
           />
         </Accordion>
         <div className={styles.resault}>
-          <button className={`btn ${styles.filterBtn}`}>Clear</button>
-          <button className={`btn ${styles.filterBtn} ${styles.primaryBtn}`}>
+          <button
+            className={`btn ${styles.filterBtn}`}
+            onClick={clearFilterHandler}
+          >
+            Clear
+          </button>
+          <button
+            className={`btn ${styles.filterBtn} ${styles.primaryBtn}`}
+            onClick={() => setFilterToggle(false)}
+          >
             Apply
           </button>
         </div>
       </section>
       <section className={`desktopFilter ${styles.desktopFilter}`}>
         <Accordion title="Price Range">
-          <InputRange name="price" value={700} step={100} min={0} max={1000} />
+          <InputRange
+            name="price"
+            value={values.price}
+            step={25}
+            min={0}
+            max={250}
+            onChange={onChange}
+          />
         </Accordion>
         <Accordion title="Size">
           <Checkbox
             options={sizeOptions}
             name="size"
             onChange={onChange}
-            value=""
+            value={parseInt(values.size)}
           />
         </Accordion>
       </section>

@@ -45,6 +45,22 @@ const productsReducer = (state, action) => {
         return _.orderBy(products, ["discount", ["asc"]]);
       }
     }
+    case "filter": {
+      const { price, size } = action.payload;
+      if (price == "" && size == "") {
+        action.payload = { size: "", price: "250" };
+      }
+      const filteredPrice = initialState.filter((p) => {
+        return p.offPrice <= price;
+      });
+      const filteredSize = filteredPrice.filter((p) => {
+        if (size === "") {
+          return initialState;
+        }
+        return p.size.find((s) => parseInt(s) === parseInt(size));
+      });
+      return filteredSize;
+    }
     default:
       return state;
   }
