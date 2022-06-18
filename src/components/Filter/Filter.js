@@ -128,6 +128,12 @@ const Filter = () => {
             value={parseInt(values.size)}
           />
         </Accordion>
+        <button
+          className={`btn ${styles.clearBtn}`}
+          onClick={clearFilterHandler}
+        >
+          Clear Filters
+        </button>
       </section>
     </>
   );

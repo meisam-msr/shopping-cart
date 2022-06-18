@@ -78,6 +78,11 @@
   height: 24px;
   color: var(--color-orange);
 }
+.clearBtn {
+  margin: 1rem 0;
+  font-size: 1rem;
+  width: 100%;
+}
 @media screen and (min-width: 768px) {
   .showModalBtn {
     display: none;
