@@ -20,7 +20,6 @@ const ProductList = () => {
   const search = query.get("search") || "";
   const price = query.get("price") || "";
   const size = query.get("size") || "";
-  console.log(price, size);
 
   useEffect(() => {
     productDispatch({ type: "search", value: search });

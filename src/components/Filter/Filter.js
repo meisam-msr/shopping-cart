@@ -16,12 +16,15 @@ const Filter = () => {
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "scroll");
 
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+  useEffect(() => {
     navigate({
       pathname: "/",
       search: `?price=${values.price}&size=${values.size}`,
     });
+  }, [values]);
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const clearFilterHandler = () => {
