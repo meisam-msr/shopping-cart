@@ -4,24 +4,32 @@ import Accordion from "../../common/Accordion/Accordion";
 import Checkbox from "../../common/CheckBox/CheckBox";
 import InputRange from "../../common/InputRange/InputRange";
 import { sizeOptions } from "../../data";
-import { useProductsActions } from "../../providers/ProductsProvider";
 import styles from "./filter.module.css";
 
 const Filter = () => {
   const [filterToggle, setFilterToggle] = useState(false);
   const [values, setValues] = useState({ price: "250", size: "" });
   const navigate = useNavigate();
+  const isMounted = useRef(false);
 
   filterToggle
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "scroll");
 
   useEffect(() => {
-    navigate({
-      pathname: "/",
-      search: `?price=${values.price}&size=${values.size}`,
-    });
+    if (isMounted.current) {
+      navigate({
+        pathname: "/",
+        search: `?price=${values.price}&size=${values.size}`,
+      });
+    } else {
+      isMounted.current = true;
+    }
   }, [values]);
+
+  useEffect(() => {
+    clearFilterHandler();
+  }, []);
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -29,10 +37,8 @@ const Filter = () => {
 
   const clearFilterHandler = () => {
     setValues({ price: "250", size: "" });
-    navigate({
-      pathname: "/",
-      search: `?price=${values.price}&size=${values.size}`,
-    });
+    isMounted.current = false;
+    navigate("/");
     setFilterToggle(false);
   };
 

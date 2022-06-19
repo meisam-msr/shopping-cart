@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useProductsActions } from "../../providers/ProductsProvider";
 import styles from "./sort.module.css";
 
@@ -12,6 +12,11 @@ const Sort = () => {
     { value: "highest", label: "expensive" },
     { value: "discount", label: "discount" },
   ];
+
+  useEffect(() => {
+    setSortValue(sortOptions[0].value);
+    productDispatch({ type: "sort", value: sortOptions[0].value });
+  }, []);
 
   const sortHandler = (e) => {
     setSortValue(e.target.value);
