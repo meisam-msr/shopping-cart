@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { useCart } from "../../providers/CartProvider";
+import styles from "./checkout.module.css";
 
 const Checkout = () => {
   const auth = useAuth();
@@ -15,27 +16,50 @@ const Checkout = () => {
   }
 
   return (
-    <main className="container">
-      <section className="cartCenter">
+    <main>
+      <h3>checkout details</h3>
+      <section className={styles.cartCenter}>
         {auth ? (
           <>
-            <section className="cartItemList" style={{ padding: "1rem" }}>
-              <h3>checkout details</h3>
-              <p>name : {auth.name}</p>
-              <p>email : {auth.email}</p>
-              <p>contact : {auth.phoneNumber}</p>
+            <section className={styles.leftContainer}>
+              <section className={styles.billingAddress}>
+                <h5>Billing address</h5>
+                <div className={styles.cartItemList}>
+                  <div>
+                    <span>name :</span>
+                    <span>{auth.name}</span>
+                  </div>
+                  <div>
+                    <span>email :</span>
+                    <span>{auth.email}</span>
+                  </div>
+                  <div>
+                    <span>contact :</span>
+                    <span>{auth.phoneNumber}</span>
+                  </div>
+                </div>
+              </section>
+              <div className={styles.footer}>
+                <div>
+                  <span>total price : </span>
+                  <span>{total}$</span>
+                </div>
+                <button className="btn primary">Continue to payment</button>
+              </div>
             </section>
-            <section className="cartSummary">
+            <section className={styles.cartSummary}>
+              <h5>Your order</h5>
               {cart &&
                 cart.map((c) => {
                   return (
-                    <div key={c.id}>
-                      {c.name} * {c.quantity} : {c.quantity * c.offPrice}
+                    <div key={c.id} className={styles.orderDetail}>
+                      <div className={styles.orderImg}>
+                        <img src={c.image} />
+                      </div>
+                      {c.name} * {c.quantity} : {c.quantity * c.offPrice}$
                     </div>
                   );
                 })}
-              <hr />
-              <div>total price : {total}</div>
             </section>
           </>
         ) : (
