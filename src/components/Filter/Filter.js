@@ -4,13 +4,14 @@ import Accordion from "../../common/Accordion/Accordion";
 import Checkbox from "../../common/CheckBox/CheckBox";
 import InputRange from "../../common/InputRange/InputRange";
 import { sizeOptions } from "../../data";
+import { useProductsActions } from "../../providers/ProductsProvider";
 import styles from "./filter.module.css";
 
-const Filter = () => {
+const Filter = ({ filters, setFilters }) => {
   const [filterToggle, setFilterToggle] = useState(false);
-  const [values, setValues] = useState({ price: "250", size: "" });
   const navigate = useNavigate();
   const isMounted = useRef(false);
+  const productDispatch = useProductsActions();
 
   filterToggle
     ? (document.body.style.overflow = "hidden")
@@ -20,25 +21,26 @@ const Filter = () => {
     if (isMounted.current) {
       navigate({
         pathname: "/",
-        search: `?price=${values.price}&size=${values.size}`,
+        search: `?price=${filters.price}&size=${filters.size}`,
       });
     } else {
       isMounted.current = true;
     }
-  }, [values]);
+  }, [filters]);
 
   useEffect(() => {
     clearFilterHandler();
   }, []);
 
   const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
   const clearFilterHandler = () => {
-    setValues({ price: "250", size: "" });
+    setFilters({ price: "250", size: "" });
     isMounted.current = false;
     navigate("/");
+    productDispatch({ type: "filter", payload: { price: "250", size: "" } });
     setFilterToggle(false);
   };
 
@@ -88,7 +90,7 @@ const Filter = () => {
         <Accordion title="Price Range">
           <InputRange
             name="price"
-            value={values.price}
+            value={filters.price}
             step={25}
             min={0}
             max={250}
@@ -100,7 +102,7 @@ const Filter = () => {
             options={sizeOptions}
             name="size"
             onChange={onChange}
-            value={parseInt(values.size)}
+            value={parseInt(filters.size)}
           />
         </Accordion>
         <div className={styles.resault}>
@@ -122,7 +124,7 @@ const Filter = () => {
         <Accordion title="Price Range">
           <InputRange
             name="price"
-            value={values.price}
+            value={filters.price}
             step={25}
             min={0}
             max={250}
@@ -134,7 +136,7 @@ const Filter = () => {
             options={sizeOptions}
             name="size"
             onChange={onChange}
-            value={parseInt(values.size)}
+            value={parseInt(filters.size)}
           />
         </Accordion>
         <button

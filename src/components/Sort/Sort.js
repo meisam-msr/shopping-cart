@@ -15,7 +15,6 @@ const Sort = () => {
 
   useEffect(() => {
     setSortValue(sortOptions[0].value);
-    productDispatch({ type: "sort", value: sortOptions[0].value });
   }, []);
 
   const sortHandler = (e) => {

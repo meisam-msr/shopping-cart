@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
 import { useEffect } from "react";
 
-const ProductList = () => {
+const ProductList = ({ setFilters }) => {
   const { cart } = useCart();
   const dispatch = useCartActions();
   const products = useProducts();
@@ -28,6 +28,12 @@ const ProductList = () => {
   useEffect(() => {
     productDispatch({ type: "filter", payload: { price, size } });
   }, [price, size]);
+
+  useEffect(() => {
+    setFilters({ price: "250", size: "" });
+    productDispatch({ type: "filter", payload: { price: "250", size: "" } });
+    productDispatch({ type: "sort", value: "lowest" });
+  }, []);
 
   const addProductHandler = (product) => {
     toast.success(`${product.name} added to cart !`);
