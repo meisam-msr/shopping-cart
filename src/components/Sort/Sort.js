@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useProductsActions } from "../../providers/ProductsProvider";
 import styles from "./sort.module.css";
 
-const Sort = () => {
+const Sort = ({ sortValue, setSortValue }) => {
   const [sortToggle, setSortToggle] = useState(false);
-  const [sortValue, setSortValue] = useState("");
   const productDispatch = useProductsActions();
 
   const sortOptions = [

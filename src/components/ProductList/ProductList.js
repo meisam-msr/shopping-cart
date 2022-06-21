@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
 import { useEffect } from "react";
 
-const ProductList = ({ setFilters }) => {
+const ProductList = ({ setFilters, setSortValue, isMounted }) => {
   const { cart } = useCart();
   const dispatch = useCartActions();
   const products = useProducts();
@@ -23,10 +23,12 @@ const ProductList = ({ setFilters }) => {
 
   useEffect(() => {
     productDispatch({ type: "search", value: search });
+    productDispatch({ type: "sort", value: "lowest" });
   }, [search]);
 
   useEffect(() => {
     productDispatch({ type: "filter", payload: { price, size } });
+    productDispatch({ type: "sort", value: "lowest" });
   }, [price, size]);
 
   useEffect(() => {
@@ -43,6 +45,13 @@ const ProductList = ({ setFilters }) => {
     toast.error(`${product.name} deleted from cart !`);
     dispatch({ type: "DEC_PRODUCT", payload: product });
   };
+  const goBackHandler = () => {
+    isMounted.current = false;
+    setFilters({ price: "250", size: "" });
+    setSortValue("lowest");
+    productDispatch({ type: "filter", payload: { price: "250", size: "" } });
+    productDispatch({ type: "sort", value: "lowest" });
+  };
 
   if (!products.length)
     return (
@@ -53,7 +62,7 @@ const ProductList = ({ setFilters }) => {
             <h3>Sorry...</h3>
             <p>We can't find what you're looking for.</p>
             <Link to="/">
-              <button className="btn primary">
+              <button className="btn primary" onClick={goBackHandler}>
                 <div className={styles.backHome}>
                   <p>Back to home</p>
                   <svg

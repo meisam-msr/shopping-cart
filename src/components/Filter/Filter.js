@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Accordion from "../../common/Accordion/Accordion";
 import Checkbox from "../../common/CheckBox/CheckBox";
@@ -7,10 +7,9 @@ import { sizeOptions } from "../../data";
 import { useProductsActions } from "../../providers/ProductsProvider";
 import styles from "./filter.module.css";
 
-const Filter = ({ filters, setFilters }) => {
+const Filter = ({ filters, setFilters, setSortValue, isMounted }) => {
   const [filterToggle, setFilterToggle] = useState(false);
   const navigate = useNavigate();
-  const isMounted = useRef(false);
   const productDispatch = useProductsActions();
 
   filterToggle
@@ -37,10 +36,12 @@ const Filter = ({ filters, setFilters }) => {
   };
 
   const clearFilterHandler = () => {
-    setFilters({ price: "250", size: "" });
     isMounted.current = false;
+    setFilters({ price: "250", size: "" });
+    setSortValue("lowest");
     navigate("/");
     productDispatch({ type: "filter", payload: { price: "250", size: "" } });
+    productDispatch({ type: "sort", value: "lowest" });
     setFilterToggle(false);
   };
 
