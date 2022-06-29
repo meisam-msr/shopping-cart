@@ -46,18 +46,19 @@ const productsReducer = (state, action) => {
       }
     }
     case "filter": {
-      const { price, size } = action.payload;
-      if (price == "" && size == "") {
-        action.payload = { size: "", price: "250" };
+      if (action.payload.price === "" && action.payload.size === "") {
+        action.payload = { price: "250", size: "" };
       }
       const filteredPrice = initialState.filter((p) => {
-        return p.offPrice <= price;
+        return p.offPrice <= action.payload.price;
       });
       const filteredSize = filteredPrice.filter((p) => {
-        if (size === "") {
+        if (action.payload.size === "") {
           return initialState;
         }
-        return p.size.find((s) => parseInt(s) === parseInt(size));
+        return p.size.find(
+          (s) => parseInt(s) === parseInt(action.payload.size)
+        );
       });
       return filteredSize;
     }
