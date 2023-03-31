@@ -59,7 +59,7 @@ const CartPage = () => {
               return (
                 <div className={styles.cartItem} key={item.id}>
                   <div className={styles.itemImg}>
-                    <img src={item.image} alt={item.name} />
+                    <img src={item.images[0]} alt={item.name} />
                   </div>
                   <div className={styles.itemDesc}>
                     <div>{item.name}</div>

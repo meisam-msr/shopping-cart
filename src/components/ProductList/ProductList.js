@@ -94,7 +94,7 @@ const ProductList = ({ setFilters, setSortValue, isMounted }) => {
             <section className={styles.product} key={product.id}>
               <img
                 className={styles.productImg}
-                src={product.image}
+                src={product.images[0]}
                 alt={product.name}
               />
               <p className={styles.productName}>{product.name}</p>
@@ -129,8 +129,8 @@ const ProductList = ({ setFilters, setSortValue, isMounted }) => {
                   <p>$ {product.price}</p>
                 </div>
                 <div className={styles.productImgs}>
-                  <img src={product.image} alt={product.name} />
-                  <img src={product.image} alt={product.name} />
+                  <img src={product.images[1]} alt={product.name} />
+                  <img src={product.images[2]} alt={product.name} />
                 </div>
               </div>
             </section>
