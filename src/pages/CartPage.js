@@ -62,7 +62,7 @@ const CartPage = () => {
                     <img src={item.images[0]} alt={item.name} />
                   </div>
                   <div className={styles.itemDesc}>
-                    <div>{item.name}</div>
+                    <div className={styles.itemName}>{item.name}</div>
                     <div className={styles.itemPrice}>
                       {item.offPrice * item.quantity} $
                     </div>
